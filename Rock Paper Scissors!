@@ -1,0 +1,51 @@
+# Need random for computer choice
+import random
+
+# Variables
+player_wins = 0
+computer_wins = 0
+name = input("What is your name? : ")
+
+print("Hello " + name + "!")
+print("Lets play rock, paper, scissors! Follow the directions below.")
+
+choices = ("rock", "paper", "scissors")
+start = "y"
+
+# start of loop ad ends once user says n
+while start == "y":
+    # Get inputs from user and outputs what user chose
+    player_choice = input("Please type 0 for rock, 1 for paper, or 2 for scissors: ")
+    print("\nYou chose " + choices[int(player_choice)] + "!")
+    # random. picks a random value from array
+    random_bot_choice = random.choice(choices)
+    print("The bot chose " + random_bot_choice + "!")
+    # if statements to compare choices and see who won and also adds a point to the winner
+    if choices[int(player_choice)] == random_bot_choice:
+        print("Both players selected " + random_bot_choice + "\nIts a tie!")
+    # elif allows you to make multiple checks of statements
+    elif choices[int(player_choice)] == "rock":
+        if random_bot_choice == "scissors":
+            print("Rock beats scissors! You win!")
+            player_wins = player_wins + 1
+        else:
+            print("Paper beats rock! You lose!")
+            computer_wins = computer_wins + 1
+    elif choices[int(player_choice)] == "paper":
+        if random_bot_choice == "rock":
+            print("Paper beats rock! You win!")
+            player_wins = player_wins + 1
+        else:
+            print("Scissors beats paper! You lose!")
+            computer_wins = computer_wins + 1
+    elif choices[int(player_choice)] == "scissors":
+        if random_bot_choice == "paper":
+            print("Scissors beats paper! You win!")
+            player_wins = player_wins + 1
+        else:
+            print("Rock beats scissors! You lose!")
+            computer_wins = computer_wins + 1
+    # Ask the user if they want to continue to play and outputs number of times both sides have won
+    print("\nYou have won " + str(player_wins) + " times")
+    print("The computer has won " + str(computer_wins) + " times")
+    start = input("\nWould you like to play again? Enter y or n: ")
