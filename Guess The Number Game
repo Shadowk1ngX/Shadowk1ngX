@@ -1,0 +1,36 @@
+# Input random to use random function
+import random
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+win = True
+guesses_counter = 0
+
+name = input("Hello! What is your name? ")
+print("Welcome to guess the number " + name + "!")
+start = input("Would you like to play? Enter y or n: ")
+# Input validation
+while start != "y" and start != "n":
+    start = input("Incorrect input!\nWould you like to play? Enter y or n: ")
+
+while start == "y":
+    # This code has to be outside of the loop so that the computer doesnt keep resetting the chosen number but has to
+    # be in a loop if the user wants to play again
+    picked_number = random.choice(numbers)
+    while win:
+        print("Guess a number 1 - 10 ")
+        player_guess = int(input("What is your guess? "))
+    # Input validation for player choice
+        while player_guess not in numbers:
+            player_guess = int(input("What is your guess? "))
+        print("You chose " + str(player_guess))
+    # Checks if the input is greater less than or equal to the correct number
+        if player_guess == picked_number:
+            print("You guessed the correct number! You win!\nYou guessed incorrectly " + str(guesses_counter) + " times before getting it!")
+            break
+        elif int(player_guess) > picked_number:
+            print(" Your guess of " + str(player_guess) + " is greater than the correct number. \nTry again!")
+            guesses_counter = guesses_counter + 1
+        elif int(player_guess) < picked_number:
+            print(" Your guess of " + str(player_guess) + " is less than the correct number. \nTry again!")
+            guesses_counter = guesses_counter + 1
+    start = input("Play again? Enter y or n ")
+print("Goodbye!")
